@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# bmi-calculator
+mod2 final project Hai and Anthony - Flatiron
+>>>>>>> 5a74ec98845231cb041d5475b538b227413eb6ff
