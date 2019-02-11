@@ -1,6 +1,6 @@
-<h1>Create your account</h1>
+<h1>Edit your account</h1>
 <%=render partial: 'shared/error_form', locals: {new_object: @user}%>
-<%=form_for @user, url: '/users' do |f|%>
+<%=form_for @user do |f|%>
 <%=f.label "Username: "%>
 <%=f.text_field :username%><br>
 <%=f.label "Password: "%>
@@ -9,5 +9,5 @@
 <%=f.password_field :password_confirmation%><br>
 <%=f.label "Email: "%>
 <%=f.text_field :email%><br>
-<%=f.submit "Sign Up"%>
+<%=f.submit "Update"%>
 <%end%>

@@ -1,0 +1,14 @@
+<h1>Input data to calculate your BMI</h1>
+<%=render partial: 'shared/error_form', locals: {new_object: @record}%>
+<%=form_for @record do |f|%>
+<%=f.label 'Your weight: '%>
+<%=f.text_field :weight%> lbs<br><br>
+<%=f.label 'Your height: '%>
+<%=f.text_field :height_ft%> ft <%=f.text_field :height_in%> in<br><br>
+<%=f.label 'Your sex: '%>
+<%=f.select :sex, [['male', 'm'], ['female', 'f']]%><br><br>
+<%=f.label 'Your age: '%>
+<%=f.text_field :age%><br><br>
+<%=f.hidden_field :user_id, value: session[:user_id]%>
+<%=f.submit "Submit"%>
+<%end%>

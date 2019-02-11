@@ -1,0 +1,15 @@
+<%if current_user == @user.id%>
+<h1><%=@user.username.capitalize%>'s Records</h1>
+<ul>
+  <% @user.records.each do |r| %>
+  <li><%= link_to "Record #{r.created_at}", record_path(r) %></li>
+  <% end %>
+</ul>
+
+<%=link_to "Create a new BMI record", new_record_url%><br>
+<%=link_to "Edit your account", edit_user_path(User.find(session[:user_id]))%><br>
+<%=link_to "Delete your account", User.find(session[:user_id]), method: :delete, data: {confirm: "Are you sure you want to delete your account?"}%><br>
+<%=link_to "Log Out", '/logout', method: 'delete'%>
+<%else%>
+You can't access this page.
+<%end%>

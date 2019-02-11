@@ -10,18 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
-
-  create_table "advices", force: :cascade do |t|
-    t.text "diet"
-    t.text "exercise"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 2) do
 
   create_table "records", force: :cascade do |t|
     t.string "weight"
-    t.string "height"
+    t.string "height_ft"
+    t.string "height_in"
     t.string "sex"
     t.string "age"
     t.string "bmi"
@@ -32,7 +26,9 @@ ActiveRecord::Schema.define(version: 3) do
     t.string "weight_to_gain"
     t.string "bmr"
     t.integer "user_id"
-    t.integer "advice_id"
+    t.string "goal"
+    t.string "cals_to_burn_per_day"
+    t.string "cals_to_consume_per_day"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +37,8 @@ ActiveRecord::Schema.define(version: 3) do
     t.string "username"
     t.string "password"
     t.string "email"
+    t.string "password_confirmation"
+    t.string "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

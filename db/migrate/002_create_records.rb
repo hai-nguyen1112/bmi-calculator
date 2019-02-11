@@ -3,7 +3,8 @@ class CreateRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :records do |t|
       t.string :weight
-      t.string :height
+      t.string :height_ft
+      t.string :height_in
       t.string :sex
       t.string :age
       t.string :bmi
@@ -14,7 +15,9 @@ class CreateRecords < ActiveRecord::Migration[4.2]
       t.string :weight_to_gain
       t.string :bmr
       t.integer :user_id
-      t.integer :advice_id
+      t.string :goal
+      t.string :cals_to_burn_per_day
+      t.string :cals_to_consume_per_day
 
       t.timestamps
     end

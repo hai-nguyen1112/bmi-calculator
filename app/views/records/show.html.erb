@@ -1,0 +1,47 @@
+<%if current_user == @record.user.id%>
+<h1><%=@record.user.username.capitalize%>'s Data: </h1>
+
+
+<h3>Your Inputs:</h3>
+<ul>
+  <li>Weight: <%= @record.weight%></li>
+  <li>Height: <%= @record.height_ft%>' <%= @record.height_in%>''</li>
+  <li>Sex: <%= @record.sex%></li>
+  <li>Age: <%= @record.age%></li>
+</ul>
+
+
+<h3>Your Results:</h3>
+  <ul>
+    <li>BMI: <%= @record.bmi %></li>
+    <li>Status: <%= @record.status %></li>
+    <li>Risk: <%= @record.risk %></li>
+    <li>BMR: <%= @record.bmr %></li>
+  </ul>
+
+<% case @record.status %>
+<% when "over weight" %>
+<h3>Improve Your Health By:</h3>
+  <ul>
+    <li>Weight to Lose: <%= @record.weight.to_f - @record.ideal_weight.to_f%> lbs</li>
+    <li>Weight Loss Goal (weeks): <%= @record.goal %></li>
+    <li> Calories to Burn (per day): <%= @record.cals_to_burn_per_day %></li>
+    <li> Allowable Calories (per day): <%= @record.cals_to_consume_per_day %></li>
+  </ul>
+  <% when "under weight" %>
+  <h3>Improve Your Health By:</h3>
+    <ul>
+      <li>Weight to Gain: <%= @record.weight.to_f - @record.ideal_weight.to_f%> lbs</li>
+      <li>Weight Gain Goal (weeks): <%= @record.goal %></li>
+      <li> Calories to Burn (per day): <%= @record.cals_to_burn_per_day %></li>
+      <li> Allowable Calories (per day): <%= @record.cals_to_consume_per_day %></li>
+    </ul>
+    <% else %>
+    <h3>Great Job!</h3>
+    Your BMI Index is within the ideal range, but the work does not end here.
+    To ensure that you stay within this range, practice disciplined eating and exercising
+    habits.
+    <% end %>
+  <%else%>
+  You can't access this page.
+  <%end%>
