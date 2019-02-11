@@ -2,7 +2,7 @@
 <h1><%=@user.username.capitalize%>'s Records</h1>
 <ul>
   <% @user.records.each do |r| %>
-  <li><%= link_to "Record #{r.created_at}", record_path(r) %></li>
+  <li><%= link_to "Record created on #{r.created_at.strftime("%B %d, %Y")}", record_path(r) %></li>
   <% end %>
 </ul>
 

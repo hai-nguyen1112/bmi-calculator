@@ -8,6 +8,12 @@ class RecordsController < ApplicationController
   end
 
   def create
+    # response = Unirest.post "https://bmi.p.rapidapi.com/",
+    #   headers:{
+    #   "X-RapidAPI-Key" => "dca5c638d7msh57465eba26e4804p1ea7d7jsn11d365218428",
+    #   "Content-Type" => "application/json"
+    #   }
+    #   "{\"weight\":{\"value\":\"85.00\",\"unit\":\"lb\"},\"height\":{\"value\":\"170\",\"unit\":\"cm\"},\"sex\":\"m\",\"age\":\"31\"}"
     @record = Record.new(record_params)
     @record[:bmi] = '12'
     @record[:status] = 'Healthy'
