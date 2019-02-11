@@ -11,5 +11,5 @@
 <%=link_to "Delete your account", User.find(session[:user_id]), method: :delete, data: {confirm: "Are you sure you want to delete your account?"}%><br>
 <%=link_to "Log Out", '/logout', method: 'delete'%>
 <%else%>
-You can't access this page.
+You can't access this page. Nice try, buddy!
 <%end%>

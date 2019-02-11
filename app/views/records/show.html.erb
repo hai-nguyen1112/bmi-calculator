@@ -41,7 +41,8 @@
     Your BMI Index is within the ideal range, but the work does not end here.
     To ensure that you stay within this range, practice disciplined eating and exercising
     habits.
-    <% end %>
+    <% end %><br><br>
+  <%=link_to "Delete this record", @record, method: :delete, data: {confirm: "Are you sure you want to delete this record?"}%>
   <%else%>
-  You can't access this page.
+  You can't access this page. Nice try, buddy!
   <%end%>

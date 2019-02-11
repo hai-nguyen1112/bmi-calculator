@@ -5,9 +5,13 @@ ruby '2.3.3'
 
 gem 'bcrypt'
 
+gem 'bmi-thenaox'
+
 gem 'json'
 
 gem 'unirest'
+
+gem 'rest-client'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'

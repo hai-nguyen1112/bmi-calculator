@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
 
-  before_action :get_record, only: :show
+  before_action :get_record, only: [:show, :destroy]
   before_action :require_login
 
   def new
@@ -8,23 +8,24 @@ class RecordsController < ApplicationController
   end
 
   def create
-    # response = Unirest.post "https://bmi.p.rapidapi.com/",
-    #   headers:{
-    #   "X-RapidAPI-Key" => "dca5c638d7msh57465eba26e4804p1ea7d7jsn11d365218428",
-    #   "Content-Type" => "application/json"
-    #   }
-    #   "{\"weight\":{\"value\":\"85.00\",\"unit\":\"lb\"},\"height\":{\"value\":\"170\",\"unit\":\"cm\"},\"sex\":\"m\",\"age\":\"31\"}"
     @record = Record.new(record_params)
-    @record[:bmi] = '12'
-    @record[:status] = 'Healthy'
-    @record[:risk] = 'Heart Disease'
-    @record[:ideal_weight] = '60'
-    @record[:weight_to_gain] = '1'
-    @record[:weight_to_gain] = '10'
-    @record[:bmr] = '135'
-    @record[:goal] = '5'
-    @record[:cals_to_burn_per_day] = '500'
-    @record[:cals_to_consume_per_day] = '2500'
+    @record[:bmi] = @record.bmi_cal(@record.weight, @record.height_ft, @record.height_in)
+    @record[:status] = @record.bmi_status(@record[:bmi])
+    @record[:risk] = @record.bmi_risk(@record[:status])
+    @record[:ideal_weight] = @record.ideal_weight(@record.height(@record.height_ft, @record.height_in), @record.sex)
+    if @record.weight.to_f > @record[:ideal_weight].to_f
+      @record[:weight_to_lose] = @record.ideal_weight_difference(@record.ideal_weight, @record.weight)
+    else
+      @record[:weight_to_gain] = @record.ideal_weight_difference(@record[:ideal_weight], @record.weight)
+    end
+
+    byebug
+    # @record[:weight_to_gain] = '1'
+    # @record[:weight_to_lose] = '10'
+    # @record[:bmr] = '135'
+    # @record[:goal] = '5'
+    # @record[:cals_to_burn_per_day] = '500'
+    # @record[:cals_to_consume_per_day] = '2500'
     if @record.save
       redirect_to record_path(@record)
     else
@@ -35,6 +36,12 @@ class RecordsController < ApplicationController
   def show
   end
 
+  def destroy
+    user_id = @record.user.id
+    @record.destroy
+    redirect_to user_path(User.find(user_id))
+  end
+
   private
 
   def get_record
@@ -42,7 +49,7 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:user_id, :weight, :height_ft, :height_in, :sex, :age) #:bmi, :status, :risk, :ideal_weight, :weight_to_lose, :weight_to_gain, :bmr, :goal, :cals_to_burn_per_day, :cals_to_consume_per_day)
+    params.require(:record).permit(:user_id, :weight, :height_ft, :height_in, :sex, :age, :bmi, :status, :risk, :ideal_weight, :weight_to_lose, :weight_to_gain, :bmr, :goal, :cals_to_burn_per_day, :cals_to_consume_per_day)
   end
 
 end
