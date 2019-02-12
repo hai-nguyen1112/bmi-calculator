@@ -11,8 +11,7 @@ class CreateRecords < ActiveRecord::Migration[4.2]
       t.string :status
       t.string :ideal_weight
       t.string :risk
-      t.string :weight_to_lose
-      t.string :weight_to_gain
+      t.string :difference_between_ideal_weight
       t.string :bmr
       t.integer :user_id
       t.string :goal

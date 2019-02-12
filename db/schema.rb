@@ -22,8 +22,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.string "status"
     t.string "ideal_weight"
     t.string "risk"
-    t.string "weight_to_lose"
-    t.string "weight_to_gain"
+    t.string "difference_between_ideal_weight"
     t.string "bmr"
     t.integer "user_id"
     t.string "goal"
@@ -35,9 +34,7 @@ ActiveRecord::Schema.define(version: 2) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
     t.string "email"
-    t.string "password_confirmation"
     t.string "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
