@@ -36,26 +36,47 @@ class Record < ActiveRecord::Base
 
   def ideal_weight
     if self.sex == 'm'
-      return (50 * 2.2 + ((2.3 * 2.2) * (self.height - 60))).to_i.to_s
+      return (50 * 2.2 + ((2.3 * 2.2) * (self.height - 60))).to_i
     else
-      return (45.5 * 2.2 + ((2.3 * 2.2) * (self.height - 60))).to_i.to_s
+      return (45.5 * 2.2 + ((2.3 * 2.2) * (self.height - 60))).to_i
     end
   end
 
-  def ideal_weight_difference
-    if self.ideal_weight.to_f > self.weight.to_f
-      return (self.ideal_weight.to_f - self.weight.to_f).to_i.to_s
-    else
-      return (self.weight.to_f - self.ideal_weight.to_f).to_i.to_s
-    end
+  def difference_between_ideal_weight
+    (self.ideal_weight.to_f -  self.weight.to_f).to_i
   end
 
   def bmr
     if self.sex == 'm'
-    ((4.5 * self.weight.to_f) + (15.9 * self.height / 2.54) - (5 * self.age.to_f) + 5).to_i.to_s
+    ((4.5 * self.weight.to_f) + (15.9 * self.height) - (5 * self.age.to_f) + 5).to_i
     else
-    ((4.5 * self.weight.to_f) + (15.9 * self.height / 2.54) - (5 * self.age.to_f) - 161).to_i.to_s
+    ((4.5 * self.weight.to_f) + (15.9 * self.height) - (5 * self.age.to_f) - 161).to_i
     end
   end
+
+  def goal
+    self.difference_between_ideal_weight.abs
+  end
+
+  def cals_to_burn_per_day
+    500
+  end
+
+  def cals_to_consume_per_day
+    if self.sex == 'm'
+      if self.status == 'Over weight' || self.status == "Healthy weight"
+        return 2500
+      else self.status == 'Under weight'
+        return 3000
+      end
+    elsif self.sex == 'f'
+      if self.status == 'Over weight' || self.status == "Healthy weight"
+        return 2000
+      else self.status == 'Under weight'
+        return 2500
+      end
+    end
+  end
+
 end
 

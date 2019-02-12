@@ -20,28 +20,32 @@
   </ul>
 
 <% case @record.status %>
-<% when "over weight" %>
+<% when "Over weight" %>
 <h3>Improve Your Health By:</h3>
   <ul>
-    <li>Weight to Lose: <%= @record.weight.to_f - @record.ideal_weight.to_f%> lbs</li>
+    <li>Weight to Lose: <%= @record.difference_between_ideal_weight.abs%> lbs</li>
     <li>Weight Loss Goal (weeks): <%= @record.goal %></li>
+    <li> Recommended Base Calories (per day): <%= @record.cals_to_consume_per_day %></li>
     <li> Calories to Burn (per day): <%= @record.cals_to_burn_per_day %></li>
-    <li> Allowable Calories (per day): <%= @record.cals_to_consume_per_day %></li>
+    <li> Total Calories (per day): <%= @record.cals_to_consume_per_day - @record.cals_to_burn_per_day %></li>
   </ul>
-  <% when "under weight" %>
+  <% when "Under weight" %>
   <h3>Improve Your Health By:</h3>
     <ul>
-      <li>Weight to Gain: <%= @record.weight.to_f - @record.ideal_weight.to_f%> lbs</li>
+      <li>Weight to Gain: <%= @record.difference_between_ideal_weight.abs%> lbs</li>
       <li>Weight Gain Goal (weeks): <%= @record.goal %></li>
-      <li> Calories to Burn (per day): <%= @record.cals_to_burn_per_day %></li>
-      <li> Allowable Calories (per day): <%= @record.cals_to_consume_per_day %></li>
+      <li> Recommended Base Calories (per day): <%= @record.cals_to_consume_per_day - @record.cals_to_burn_per_day %></li>
+      <li> Additional Calories (per day): <%= @record.cals_to_burn_per_day %></li>
+      <li> Total Calories (per day): <%= @record.cals_to_consume_per_day %></li>
     </ul>
     <% else %>
     <h3>Great Job!</h3>
     Your BMI Index is within the ideal range, but the work does not end here.
-    To ensure that you stay within this range, practice disciplined eating and exercising
-    habits.
+    To ensure that you stay within this range, practice disciplined in your diet and excersise regimen.
     <% end %><br><br>
+
+  <%=link_to "Create a new BMI record", new_record_url%><br>
+
   <%=link_to "Delete this record", @record, method: :delete, data: {confirm: "Are you sure you want to delete this record?"}%>
   <%else%>
   You can't access this page. Nice try, buddy!

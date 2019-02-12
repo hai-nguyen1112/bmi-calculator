@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Elsie+Swash+Caps');
+@import url('https://fonts.googleapis.com/css?family=Clicker+Script');
+ /* Type Selector: */
+ p { /* select all <P> */ 
+font-size: 16px; /* 16px, ?pt, 100%, 1em = (# pixels / 16) */
+line-height: 1.5em;
+}
+
+figcaption {
+  /* font-weight: normal;
+  font-size: 0.75em;
+  line-height: 1.5em;
+  font-family: Georgia, "New Times Roman", serif; */
+  font: normal 0.75em/1.5em 'Elsie Swash Caps', cursive;
+  color: #FF0000;
+  text-align: right;
+
+}
+
+/* class selectors can be apied to as many elemetns as you like */
+
+.milk-text {select elements } {/* elements with class="milk-text" */
+font: bold 2.6em 'Elsie Swash Caps', cursive;
+color: white;
+text-shadow: 0 2px 3px #000
+}
+
+/* * ID selectors can only apply to one unique element per page */
+
+#logo {/* elements with id="logo" */
+  background-color: aqua;
+}
+
+/* descendent selector */
+#logo h1 { /* only selects h1 if it's insides the id="logo" */
+  font-family: 'Clicker Script', cursive;
+}
+
+#logo h2 { /* only selects h1 if it's insides the id="logo" */
+  font-family: 'Elsie Swash Caps', cursive;
+}
+
+/* Pseudo Selector */
+
+#details a:link {
+  color: black;
+  text-decoration: none;
+}
+
+#details a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+/* or */
+
+#details a:link, a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+#details a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+#details a:active {
+  color: #f00;
+  text-decoration: underline;
+}
+

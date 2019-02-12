@@ -14,19 +14,15 @@ class RecordsController < ApplicationController
     @record[:risk] = @record.bmi_risk
     @record[:ideal_weight] = @record.ideal_weight
     @record[:bmr] = @record.bmr
-    if @record.weight.to_f > @record.ideal_weight.to_f
-      @record[:weight_to_lose] = @record.ideal_weight_difference
+    @record[:difference_between_ideal_weight] = @record.difference_between_ideal_weight
+    @record[:goal] = @record.goal
+    if @record[:status] == 'Healthy weight'
+      @record[:cals_to_burn_per_day] = nil
     else
-      @record[:weight_to_gain] = @record.ideal_weight_difference
+      @record[:cals_to_burn_per_day] = @record.cals_to_burn_per_day
     end
-
-    byebug
-    # @record[:weight_to_gain] = '1'
-    # @record[:weight_to_lose] = '10'
-    # @record[:bmr] = '135'
-    # @record[:goal] = '5'
-    # @record[:cals_to_burn_per_day] = '500'
-    # @record[:cals_to_consume_per_day] = '2500'
+    @record[:cals_to_consume_per_day] = @record.cals_to_consume_per_day
+    # byebug
     if @record.save
       redirect_to record_path(@record)
     else
