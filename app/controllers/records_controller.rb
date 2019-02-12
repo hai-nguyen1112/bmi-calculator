@@ -9,14 +9,15 @@ class RecordsController < ApplicationController
 
   def create
     @record = Record.new(record_params)
-    @record[:bmi] = @record.bmi_cal(@record.weight, @record.height_ft, @record.height_in)
-    @record[:status] = @record.bmi_status(@record[:bmi])
-    @record[:risk] = @record.bmi_risk(@record[:status])
-    @record[:ideal_weight] = @record.ideal_weight(@record.height(@record.height_ft, @record.height_in), @record.sex)
-    if @record.weight.to_f > @record[:ideal_weight].to_f
-      @record[:weight_to_lose] = @record.ideal_weight_difference(@record.ideal_weight, @record.weight)
+    @record[:bmi] = @record.bmi_cal
+    @record[:status] = @record.bmi_status
+    @record[:risk] = @record.bmi_risk
+    @record[:ideal_weight] = @record.ideal_weight
+    @record[:bmr] = @record.bmr
+    if @record.weight.to_f > @record.ideal_weight.to_f
+      @record[:weight_to_lose] = @record.ideal_weight_difference
     else
-      @record[:weight_to_gain] = @record.ideal_weight_difference(@record[:ideal_weight], @record.weight)
+      @record[:weight_to_gain] = @record.ideal_weight_difference
     end
 
     byebug

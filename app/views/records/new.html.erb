@@ -12,3 +12,4 @@
 <%=f.hidden_field :user_id, value: session[:user_id]%>
 <%=f.submit "Submit"%>
 <%end%>
+<p><%=link_to "Log Out", '/logout', method: 'delete'%></p>
