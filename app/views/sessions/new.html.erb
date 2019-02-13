@@ -1,10 +1,17 @@
-<h1>Log In Form</h1>
-<div class="error"><%=flash.notice%></div>
-<%=form_tag '/login' do%>
-<%=label :username, 'Username: '%>
-<%=text_field_tag :username%><br><br>
-<%=label :password, 'Password: '%>
-<%=password_field_tag :password%><br>
-<%=submit_tag 'Log In'%><br>
-<%end%>
-<%=link_to "Or create an account", new_user_url%>
+<div id='login_error' class="alert alert-danger"><%=flash.notice%></div>
+
+<h1 id="login">Login</h1>
+
+<div class="form">
+  <%=form_tag '/login' do%>
+    <div class="form-group">
+    <%=label_tag :username%>
+    <%=text_field_tag :username%>
+    </div>
+    <div class="form-group">
+    <%=label_tag :password%>
+    <%=password_field_tag :password%>
+    </div>
+    <%=submit_tag "Login", class: "btn btn-primary"%>
+  <%end%>
+</div>

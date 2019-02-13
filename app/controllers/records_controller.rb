@@ -22,7 +22,6 @@ class RecordsController < ApplicationController
       @record[:cals_to_burn_per_day] = @record.cals_to_burn_per_day
     end
     @record[:cals_to_consume_per_day] = @record.cals_to_consume_per_day
-    # byebug
     if @record.save
       redirect_to record_path(@record)
     else

@@ -1,5 +1,5 @@
 h1 {
-  color: red;
+  color: #007bff;
   position: absolute;
   top: 20%;
   left: 40%;
@@ -17,4 +17,22 @@ h1 {
   position: absolute;
   top: 29%;
   left: 41.25%;
+}
+
+.help-block {
+  color: red;
+  font-style: italic;
+}
+
+#login {
+  position: absolute;
+  top: 23%;
+  left: 45%;
+}
+
+#login_error {
+  font-family: 'Karla', sans-serif;
+  font-size: 2em;
+  color: red;
+  text-align: center;
 }

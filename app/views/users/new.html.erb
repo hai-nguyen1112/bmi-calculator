@@ -1,25 +1,35 @@
 <h1>Create Your Account</h1>
-<%=render partial: 'shared/error_form', locals: {new_object: @user}%>
 
 <div class="form">
   <%=form_for @user, url: '/users' do |f|%>
-    <div class="form-group">
+    <div class="form-group <%= 'has-error' if @user.errors.has_key?(:username) %>">
     <%=f.label :username, class: "control-label"%>
     <%=f.text_field :username, class: "form-control", placeholder: "Maximum 20 Characters"%>
+    <% @user.errors.full_messages_for(:username).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
     </div>
-    <div class="form-group">
+    <div class="form-group <%= 'has-error' if @user.errors.has_key?(:password) %>">
     <%=f.label :password, class: "control-label"%>
     <%=f.password_field :password, class: "form-control", placeholder: "Minimum 6 Characters"%>
+    <% @user.errors.full_messages_for(:password).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
     </div>
-    <div class="form-group">
+    <div class="form-group <%= 'has-error' if @user.errors.has_key?(:password_confirmation) %>">
     <%=f.label :password_confirmation, class: "control-label"%>
     <%=f.password_field :password_confirmation, class: "form-control", placeholder: "Minimum 6 Characters"%>
+    <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
     </div>
-    <div class="form-group">
+    <div class="form-group <%= 'has-error' if @user.errors.has_key?(:email) %>">
     <%=f.label :email, class: "control-label"%>
     <%=f.text_field :email, class: "form-control", id: "email", placeholder: "example@gmail.com"%>
+    <% @user.errors.full_messages_for(:email).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
     </div>
     <%=f.submit "Sign Up", class: "btn btn-primary"%>
   <%end%>
 </div>
-

@@ -1,6 +1,6 @@
 <%if new_object.errors.any?%>
 <div id="error_explanation">
-<h2><%=pluralize(new_object.errors.count, 'error')%> occured:</h2>
+<h2><%=pluralize(new_object.errors.count, 'Error')%> Occurred:</h2>
 <ul>
 <%new_object.errors.full_messages.each do |msg|%>
 <li><%=msg%></li>

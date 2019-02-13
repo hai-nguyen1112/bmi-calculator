@@ -10,11 +10,11 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to controller: 'welcome', action: 'home'
       else
-        flash.notice = 'Password incorrect'
+        flash.notice = 'Password Incorrect'
         render :new
       end
     else
-      flash.notice = 'No user found with that username'
+      flash.notice = 'No User Found With That Username'
       render :new
     end
   end

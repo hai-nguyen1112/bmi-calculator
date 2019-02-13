@@ -7,7 +7,7 @@
 
   <div class="container">
   <%if session[:user_id]%>
-    <div id="welcome">
+    <div class="fixed-top" id="welcome">
       Welcome <%=User.find(session[:user_id]).username.capitalize%>
     </div>
       <div id="sign_in_links">
@@ -18,7 +18,7 @@
       <%=link_to "Log Out", '/logout', method: 'delete'%>
       </div>
     <%else%>
-    <div id="home-message" >
+    <div class="fixed-top" id="home-message" >
       HiAnt's BMI Calculator
       </div>
       <div id="links">
