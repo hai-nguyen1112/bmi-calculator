@@ -1,15 +1,39 @@
-<h1>Input data to calculate your BMI</h1>
-<%=render partial: 'shared/error_form', locals: {new_object: @record}%>
-<%=form_for @record do |f|%>
-<%=f.label 'Your weight: '%>
-<%=f.text_field :weight%> lbs<br><br>
-<%=f.label 'Your height: '%>
-<%=f.text_field :height_ft%> ft <%=f.text_field :height_in%> in<br><br>
-<%=f.label 'Your sex: '%>
-<%=f.select :sex, [['male', 'm'], ['female', 'f']]%><br><br>
-<%=f.label 'Your age: '%>
-<%=f.text_field :age%><br><br>
-<%=f.hidden_field :user_id, value: session[:user_id]%>
-<%=f.submit "Submit"%>
-<%end%>
-<p><%=link_to "Log Out", '/logout', method: 'delete'%></p>
+<h1 id="record-form">Input Health Factors</h1>
+
+<div class="form">
+  <%=form_for @record do |f|%>
+    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:weight) %>">
+    <%=f.label :weight, class: "control-label"%>
+    <%=f.text_field :weight, class: "form-control", placeholder: "lbs"%>
+    <% @record.errors.full_messages_for(:weight).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
+    </div>
+    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:height_ft) %>">
+    <%=f.label "Height", class: "control-label"%>
+    <%=f.text_field :height_ft, class: "form-control", placeholder: "ft"%>
+    <% @record.errors.full_messages_for(:height_ft).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
+    </div>
+    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:height_in) %>">
+    <%=f.text_field :height_in, class: "form-control", placeholder: "in"%>
+    <% @record.errors.full_messages_for(:height_in).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
+    </div>
+    <div class="form-group">
+    <%=f.label :sex, class: "control-label"%>
+    <%=f.select :sex, [['male', 'm'], ['female', 'f']], class: "form-control"%>
+    </div>
+    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:age) %>">
+    <%=f.label :age, class: "control-label"%>
+    <%=f.text_field :age, class: "form-control", placeholder: "yrs"%>
+    <% @record.errors.full_messages_for(:age).each do |message| %>
+    <p class="help-block"><%= message %></p>
+    <% end %>
+    </div>
+    <%=f.hidden_field :user_id, value: session[:user_id]%>
+    <%=f.submit "Submit", class: "btn btn-primary"%>
+  <%end%>
+</div>
