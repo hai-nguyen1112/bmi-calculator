@@ -1,42 +1,73 @@
-<head>
-  
-</head>
-<h1 id="record-form">Input Health Factors</h1>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #007bff;">
+    <a class="navbar-brand" href="/">HiAnt's BMI Calculator</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/<%= session[:user_id] %>">View BMI Records</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/records/new">New BMI Record</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/<%= session[:user_id] %>/edit">Edit Your Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/<%= session[:user_id] %>" data-method="delete" data-confirm="Are you sure you want to delete your account?">Delete Your Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout" data-method="delete" rel="nofollow">Logout</a>
+      </li>
+    </ul>
+    </div>
+    </nav>
+  </div>
+  <div class="row">
+    <h1 id="record-form">Input Health Factors</h1>
 
-<div class="form">
-  <%=form_for @record do |f|%>
-    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:weight) %>">
-    <%=f.label :weight, class: "control-label"%>
-    <%=f.text_field :weight, class: "form-control", placeholder: "lbs"%>
-    <% @record.errors.full_messages_for(:weight).each do |message| %>
-    <p class="help-block"><%= message %></p>
-    <% end %>
-    </div>
-    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:height_ft) %>">
-    <%=f.label "Height", class: "control-label"%>
-    <%=f.text_field :height_ft, class: "form-control", placeholder: "ft"%>
-    <% @record.errors.full_messages_for(:height_ft).each do |message| %>
-    <p class="help-block"><%= message %></p>
-    <% end %>
-    </div>
-    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:height_in) %>">
-    <%=f.text_field :height_in, class: "form-control", placeholder: "in"%>
-    <% @record.errors.full_messages_for(:height_in).each do |message| %>
-    <p class="help-block"><%= message %></p>
-    <% end %>
-    </div>
-    <div class="form-group">
-    <%=f.label :sex, class: "control-label"%>
-    <%=f.select :sex, [['male', 'm'], ['female', 'f']], class: "form-control"%>
-    </div>
-    <div class="form-group <%= 'has-error' if @record.errors.has_key?(:age) %>">
-    <%=f.label :age, class: "control-label"%>
-    <%=f.text_field :age, class: "form-control", placeholder: "yrs"%>
-    <% @record.errors.full_messages_for(:age).each do |message| %>
-    <p class="help-block"><%= message %></p>
-    <% end %>
-    </div>
-    <%=f.hidden_field :user_id, value: session[:user_id]%>
-    <%=f.submit "Submit", class: "btn btn-primary"%>
-  <%end%>
+    <div class="form">
+      <%=form_for @record do |f|%>
+        <div class="form-group <%= 'has-error' if @record.errors.has_key?(:weight) %>">
+        <%=f.label :weight, class: "control-label"%>
+        <%=f.text_field :weight, class: "form-control", placeholder: "lbs"%>
+        <% @record.errors.full_messages_for(:weight).each do |message| %>
+        <p class="help-block"><%= message %></p>
+        <% end %>
+        </div>
+        <div class="form-group <%= 'has-error' if @record.errors.has_key?(:height_ft) %>">
+        <%=f.label "Height", class: "control-label"%>
+        <%=f.text_field :height_ft, class: "form-control", placeholder: "ft"%>
+        <% @record.errors.full_messages_for(:height_ft).each do |message| %>
+        <p class="help-block"><%= message %></p>
+        <% end %>
+        </div>
+        <div class="form-group <%= 'has-error' if @record.errors.has_key?(:height_in) %>">
+        <%=f.text_field :height_in, class: "form-control", placeholder: "in"%>
+        <% @record.errors.full_messages_for(:height_in).each do |message| %>
+        <p class="help-block"><%= message %></p>
+        <% end %>
+        </div>
+        <div class="form-group">
+        <%=f.label :sex, class: "control-label"%>
+        <%=f.select :sex, [['male', 'm'], ['female', 'f']], class: "form-control"%>
+        </div>
+        <div class="form-group <%= 'has-error' if @record.errors.has_key?(:age) %>">
+        <%=f.label :age, class: "control-label"%>
+        <%=f.text_field :age, class: "form-control", placeholder: "yrs"%>
+        <% @record.errors.full_messages_for(:age).each do |message| %>
+        <p class="help-block"><%= message %></p>
+        <% end %>
+        </div>
+        <%=f.hidden_field :user_id, value: session[:user_id]%>
+        <%=f.submit "Submit", class: "btn btn-primary"%>
+      <%end%>
+  </div>
+  </div>
 </div>

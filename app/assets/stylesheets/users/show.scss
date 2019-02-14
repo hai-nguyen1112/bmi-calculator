@@ -1,0 +1,18 @@
+#row1 {
+  height: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#row2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 2em;
+}
+
+#row2 ul li {
+  font-size: 2rem;
+}

@@ -1,15 +1,46 @@
 <%if current_user == @user.id%>
-<h1><%=@user.username.capitalize%>'s Records</h1>
-<ul>
-  <% @user.records.each do |r| %>
-  <li><%= link_to "Record created on #{r.created_at.strftime("%B %d, %Y")}", record_path(r) %></li>
-  <% end %>
-</ul>
-
-<%=link_to "Create a new BMI record", new_record_url%><br>
-<%=link_to "Edit your account", edit_user_path(User.find(session[:user_id]))%><br>
-<%=link_to "Delete your account", User.find(session[:user_id]), method: :delete, data: {confirm: "Are you sure you want to delete your account?"}%><br>
-<%=link_to "Log Out", '/logout', method: 'delete'%>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #007bff;">
+      <a class="navbar-brand" href="/">HiAnt's BMI Calculator</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/<%= session[:user_id] %>">View BMI Records</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/records/new">New BMI Record</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/<%= session[:user_id] %>/edit">Edit Your Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/<%= session[:user_id] %>" data-method="delete" data-confirm="Are you sure you want to delete your account?">Delete Your Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" data-method="delete" rel="nofollow">Logout</a>
+        </li>
+      </ul>
+      </div>
+      </nav>
+    </div>
+  <div class="row" id="row1">
+    <h2><%=@user.username.capitalize%>'s Records</h2>
+  </div>
+  <div class="row" id="row2">
+    <ul>
+      <% @user.records.each do |r| %>
+      <li><%= link_to "Record created on #{r.created_at.strftime("%B %d, %Y")}", record_path(r) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 <%else%>
 You can't access this page. Nice try, buddy!
 <%end%>

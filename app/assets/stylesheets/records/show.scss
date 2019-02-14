@@ -1,17 +1,29 @@
-h2 {
+#row1 h2 {
   color: #007bff;
   font-family: 'Rubik', sans-serif;
+  font-size: 3rem;
 }
 
-h3 {
+#row2 h3 {
   color: #007bff;
   font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+#advice h3 {
+  color: #007bff;
+  font-family: 'Rubik', sans-serif;
+  text-align: center;
+  font-size: 2.5rem;
 }
 
 li  {
   color: #E33A0B;
   font-family: 'Karla', sans-serif;
   font-size: 1.25em;
+  text-align: center;
+  list-style-type: none;
 }
 
 #row1 {
@@ -21,23 +33,36 @@ li  {
   align-items: center;
 }
 
-#row2 {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: flex-start;
+#row2 .col-6 {
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   padding: 2em;
 }
 
 #advice {
   display: flex;
   justify-content: center;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   padding: 2em;
 }
 
 #links1 {
+  display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  height: 10em;
+}
+
+.list h3 {
+    padding-left: 40px;
+}
+
+#row2 .list ul li {
+  font-size: 1.75rem;
+}
+
+#advice ul li {
+  font-size: 1.75rem;
 }
