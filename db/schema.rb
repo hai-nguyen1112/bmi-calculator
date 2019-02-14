@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2) do
 
-  create_table "records", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "records", id: :serial, force: :cascade do |t|
     t.string "weight"
     t.string "height_ft"
     t.string "height_in"
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
