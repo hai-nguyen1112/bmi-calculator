@@ -1,29 +1,11 @@
-<<<<<<< HEAD
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Application Name: BMI Cal
 
-Things you may want to cover:
+* BMI Cal is a user-friendly BMI calculator, providing real-time health status, record tracking and weigh-related benchmarks.
 
-* Ruby version
+* Languages: Ruby on Rails
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
-# bmi-calculator
-mod2 final project Hai and Anthony - Flatiron
->>>>>>> 5a74ec98845231cb041d5475b538b227413eb6ff
+* To user BMI Cal:
+  - Go to: hiant-herokuapp.com
+  - Browser: Chrome or Firefox
